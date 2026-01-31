@@ -46,8 +46,12 @@ export const ManageRacers: React.FC = () => {
 
     const saveMutation = useMutation({
         mutationFn: async (data: Partial<Racer>) => {
-            // Clean up team_id if empty string -> null
-            const payload = { ...data, team_id: data.team_id || null };
+            // Clean up team_id and dob if empty string -> null
+            const payload = {
+                ...data,
+                team_id: data.team_id || null,
+                dob: data.dob || null
+            };
 
             if (editingRacer) {
                 const { error } = await supabase.from('racers').update(payload).eq('id', editingRacer.id);

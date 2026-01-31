@@ -35,14 +35,17 @@ export const ManageRaces: React.FC = () => {
     // Create/Update Mutation
     const saveMutation = useMutation({
         mutationFn: async (data: Partial<Race>) => {
+            const payload = { ...data, time: data.time || null };
+
             if (editingRace) {
-                const { error } = await supabase.from('races').update(data).eq('id', editingRace.id);
+                const { error } = await supabase.from('races').update(payload).eq('id', editingRace.id);
                 if (error) throw error;
             } else {
+                // Ensure required fields are present for insert
                 const newRace = {
-                    ...data,
-                    code: data.code as string,
-                    name: data.name as string
+                    ...payload,
+                    code: payload.code as string,
+                    name: payload.name as string
                 };
                 const { error } = await supabase.from('races').insert([newRace]);
                 if (error) throw error;
