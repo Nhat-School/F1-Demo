@@ -1,16 +1,19 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CalendarPlus, Trophy, BarChart3, Car } from 'lucide-react';
+import { CalendarPlus, Trophy, BarChart3, FlipHorizontal2 as Flag, Box as Component, Users, Car } from 'lucide-react';
 import clsx from 'clsx';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const location = useLocation();
 
     const navItems = [
-        { label: 'Register to Racing', path: '/register', icon: CalendarPlus },
-        { label: 'Update Results', path: '/results', icon: Trophy },
+        { label: 'Register', path: '/register', icon: CalendarPlus },
+        { label: 'Results', path: '/results', icon: Trophy },
         { label: 'Standings', path: '/standings', icon: BarChart3 },
+        { label: 'Races', path: '/races', icon: Flag },
+        { label: 'Teams', path: '/teams', icon: Component },
+        { label: 'Racers', path: '/racers', icon: Users },
     ];
 
     return (
