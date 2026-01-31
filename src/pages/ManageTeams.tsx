@@ -48,6 +48,9 @@ export const ManageTeams: React.FC = () => {
             queryClient.invalidateQueries({ queryKey: ['teams'] });
             closeModal();
         },
+        onError: (error) => {
+            alert('Error saving team: ' + error.message);
+        },
     });
 
     const deleteMutation = useMutation({

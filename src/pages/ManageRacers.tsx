@@ -66,6 +66,9 @@ export const ManageRacers: React.FC = () => {
             queryClient.invalidateQueries({ queryKey: ['racers_admin'] });
             closeModal();
         },
+        onError: (error) => {
+            alert('Error saving racer: ' + error.message);
+        },
     });
 
     const deleteMutation = useMutation({

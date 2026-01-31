@@ -52,6 +52,9 @@ export const ManageRaces: React.FC = () => {
             queryClient.invalidateQueries({ queryKey: ['races'] });
             closeModal();
         },
+        onError: (error) => {
+            alert('Error saving race: ' + error.message);
+        },
     });
 
     // Delete Mutation
